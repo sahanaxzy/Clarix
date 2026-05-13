@@ -2,7 +2,7 @@
 
 An AI-powered study material search engine. Upload PDFs, documents, and links — then search by meaning or ask questions. Answers come from what's actually inside your materials.
 
-![Clarix UI](screenshots/clarix-ui.png)
+<img width="1917" height="911" alt="Screenshot 2026-05-13 141102" src="https://github.com/user-attachments/assets/85f4b424-17e8-46e2-9767-2231b5ba3e65" />
 
 ## Run locally
 
