@@ -1,6 +1,8 @@
-# Study Material Search
+# Clarix
 
-A sleek local library for your study materials. Upload PDFs and documents, save links, and search by meaning based on the actual content inside your materials.
+An AI-powered study material search engine. Upload PDFs, documents, and links — then search by meaning or ask questions. Answers come from what's actually inside your materials.
+
+![Clarix UI](screenshots/clarix-ui.png)
 
 ## Run locally
 
@@ -9,30 +11,21 @@ npm install
 npm run dev
 ```
 
+For AI-powered answers, get a free [Gemini API key](https://aistudio.google.com/apikey) and add it to a `.env` file:
+
+```env
+VITE_GEMINI_API_KEY=your_api_key_here
+```
+
 ## How it works
 
-- Files are read in the browser and text is extracted (PDF/DOCX/plain text).
-- Content is split into chunks and embedded locally to enable natural language search.
-- Your library is stored in IndexedDB on your device.
+- Files are read in the browser and text is extracted (PDF, DOCX, plain text, HTML).
+- Content is split into chunks and embedded locally using an on-device transformer model (Xenova/all-MiniLM-L6-v2) to enable semantic search.
+- You can ask questions about your uploads — with a Gemini API key, you get full generative AI answers grounded in your files. Without a key, Clarix finds and returns the most relevant passages on-device.
+- Your library is stored in IndexedDB on your device. Nothing leaves your browser unless you configure an API key.
 
 ## Notes
 
 - Link indexing uses a read-only fetch proxy (`https://r.jina.ai/…`) to retrieve public page content in a browser-friendly way.
-- First-time model loading can take a bit longer; after that, it’s cached.
-
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- First-time model loading can take a bit longer; after that, it's cached.
+- Supports PDF, DOCX, TXT, MD, RTF, and HTML files. Drag & drop is supported.
